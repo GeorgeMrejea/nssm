@@ -1232,7 +1232,7 @@ int install_service(nssm_service_t *service) {
   _sntprintf_s(service->image, _countof(service->image), _TRUNCATE, _T("%s"), nssm_imagepath());
 
   /* Create the service - settings will be changed in edit_service() */
-  service->handle = CreateService(services, service->name, service->name, SERVICE_ALL_ACCESS, SERVICE_WIN32_OWN_PROCESS, SERVICE_AUTO_START, SERVICE_ERROR_NORMAL, service->image, 0, 0, 0, 0, 0);
+  service->handle = CreateService(services, service->name, service->name, SERVICE_INTERROGATE, SERVICE_WIN32_OWN_PROCESS, SERVICE_AUTO_START, SERVICE_ERROR_NORMAL, service->image, 0, 0, 0, 0, 0);
   if (! service->handle) {
     print_message(stderr, NSSM_MESSAGE_CREATESERVICE_FAILED, error_string(GetLastError()));
     CloseServiceHandle(services);
